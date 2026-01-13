@@ -9,8 +9,12 @@ class HealthBar {
 
   constructor() {
     this.#healthRings = document.getElementById("life-rings");
-    this.#healthRings.replaceChildren();
+    this.reset();
+  }
 
+  reset() {
+    this.#healthRings.replaceChildren();
+    this.#healthScore = 3;
     for (let i = 0; i < this.#healthScore; i++) {
       const imgElement = document.createElement("img");
       imgElement.src = "./assets/ring.png";
@@ -143,6 +147,7 @@ class Game {
   #ringSide = "middle";
   #level = 0;
   #maxLevel = 10;
+  #looseCallback = null;
 
   // classes
   #hands = null;
@@ -159,7 +164,7 @@ class Game {
   #GAME_OVER = "Game Over :<";
   #GOOD_JOB = "Good Job!!!";
 
-  constructor() {
+  constructor(looseCallback = null) {
     this.#hands = new Hands();
     this.#ring = new Ring();
     this.#healthBar = new HealthBar();
@@ -171,6 +176,10 @@ class Game {
     this.boundLeftHandHandler = this.#handleLeftHand.bind(this);
 
     this.#gameScore = document.getElementById("game-score");
+
+    if (typeof looseCallback === "function") {
+      this.#looseCallback = looseCallback;
+    }
   }
 
   #updateScore(score) {
@@ -210,7 +219,12 @@ class Game {
     } else {
       this.#healthBar.reduce();
       this.#gameplayMessage.showDanger(this.#GAME_OVER);
-      wait(3000).then(() => this.stop());
+      void wait(3000).then(() => {
+        if (typeof this.#looseCallback === "function") {
+          this.#looseCallback();
+        }
+        this.stop();
+      });
     }
   }
 
@@ -262,6 +276,7 @@ class Game {
   start() {
     this.#level = 0;
     this.#gameState = "running";
+    this.#healthBar.reset();
     this.#gameplayMessage.show(false);
     this.#hands.addRightHandClickedListener(this.boundRightHandHandler);
     this.#hands.addLeftHandClickedListener(this.boundLeftHandHandler);
@@ -282,7 +297,12 @@ class Game {
   }
 }
 
-const game = new Game();
+const game = new Game(() => {
+  startButton.dataset.state = "inactive";
+  startButton.innerText = "Start";
+
+  console.log("aw");
+});
 
 const startButton = document.getElementById("start-button");
 startButton.addEventListener("click", () => {
