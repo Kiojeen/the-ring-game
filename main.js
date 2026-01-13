@@ -13,7 +13,7 @@ class HealthBar {
 
     for (let i = 0; i < this.#healthScore; i++) {
       const imgElement = document.createElement("img");
-      imgElement.src = "/assets/ring.png";
+      imgElement.src = "./assets/ring.png";
       imgElement.classList.add("life-ring");
       imgElement.alt = `Life Ring ${i}`;
 

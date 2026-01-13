@@ -3,8 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="/main.js" defer></script>
+    <meta
+      name="description"
+      content="A game where you guess in which hand the ring is hidden. It is inspired by a game from the Iraqi culture called محيبس or Mheibes."
+    />
+    <meta name="author" content="Kiojeen" />
+    <meta name="keywords" content="Kiojeen|Game|Ring|Iraq" />
+    <link rel="icon" href="./assets/favicon.ico" />
+    <!-- open graph -->
+    <meta property="og:title" content="The Ring Game" />
+    <meta
+      property="og:description"
+      content="A game where you guess in which hand the ring is hidden. It is inspired by a game from the Iraqi culture called محيبس or Mheibes."
+    />
+    <meta
+      property="og:image"
+      content="	https://kiojeen.github.io/the-ring-game/assets/banner.png"
+    />
+    <!--  -->
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./main.js" defer></script>
     <title>The Ring Game</title>
   </head>
   <body>
@@ -14,13 +32,13 @@
         <p id="game-score">Score: 0 / x</p>
 
         <div id="life-rings">
-          <!-- <img src="/assets/ring.png" alt="Life Ring" class="life-ring" /> -->
+          <!-- <img src="./assets/ring.png" alt="Life Ring" class="life-ring" /> -->
         </div>
       </div>
       <div id="game-box">
         <p id="game-message"></p>
         <div id="game-ring" class="ring-middle">
-          <img id="ring-img" src="/assets/ring.png" alt="Game Ring" />
+          <img id="ring-img" src="./assets/ring.png" alt="Game Ring" />
         </div>
         <div id="game-hands">
           <div id="hands-hitboxes">
@@ -30,23 +48,26 @@
           <img
             id="hands-closed"
             class="hands-img hidden"
-            src="/assets/hands_closed.png"
+            src="./assets/hands_closed.png"
             alt="Hands Closed"
           />
           <img
             id="hands-opened"
             class="hands-img"
-            src="/assets/hands_opened.png"
+            src="./assets/hands_opened.png"
             alt="Hands Opened"
           />
         </div>
       </div>
 
       <button id="start-button" data-state="inactive">Start</button>
-
     </div>
-    <a id="credits" href="https://github.com/Kiojeen/the-ring-game" target="_blank">
-      <img src="/assets/github-logo.png" alt="github-logo" />
+    <a
+      id="credits"
+      href="https://github.com/Kiojeen/the-ring-game"
+      target="_blank"
+    >
+      <img src="./assets/github-logo.png" alt="github-logo" />
       Kiojeen
     </a>
   </body>
