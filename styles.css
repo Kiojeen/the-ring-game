@@ -104,7 +104,7 @@ body {
   align-items: center;
 
   aspect-ratio: 1 / 1;
-  background-color: white;
+  background-color: #FCFDFD;
 
   border: 0.5rem solid oklch(58.6% 0.253 17.585);
   border-radius: 10px;
